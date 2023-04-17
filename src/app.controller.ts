@@ -1,15 +1,12 @@
-import { Controller, Get, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Get, StreamableFile } from '@nestjs/common';
 import { createReadStream } from 'fs';
-import { resolve } from 'path';
-@Controller()
-export class AppController {
-  constructor() {}
+import { join } from 'path';
 
-  @Get('*')
-  getClient(@Res() res: Response) {
-		/*const stream = createReadStream(resolve('./client/index.html'))
-			res.type('text/html').send(stream)*/
-		res.sendFile("./client/index.html")
-	}
+@Controller('*')
+export class FileController {
+  @Get()
+  getFile(): StreamableFile {
+    const file = createReadStream(join(process.cwd(), 'package.json'));
+    return new StreamableFile(file);
+  }
 }
