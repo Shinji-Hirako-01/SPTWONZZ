@@ -8,7 +8,8 @@ export class AppController {
 
   @Get('*')
   getClient(@Res() res: Response) {
-		const stream = createReadStream(resolve('./client/index.html'))
-			res.type('text/html').send(stream)
+		/*const stream = createReadStream(resolve('./client/index.html'))
+			res.type('text/html').send(stream)*/
+		res.send("Hi")
 	}
 }
