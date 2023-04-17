@@ -1,12 +1,12 @@
-import { Controller, Get, StreamableFile } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 import { createReadStream } from 'fs';
 import { join } from 'path';
 
 @Controller('*')
 export class FileController {
   @Get()
-  getFile(): StreamableFile {
+  getFile(@Res() res) {
     const file = createReadStream(join(process.cwd(), 'package.json'));
-    return new StreamableFile(file);
+    return file.pipe(res);;
   }
 }
