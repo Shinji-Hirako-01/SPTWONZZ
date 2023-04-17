@@ -10,6 +10,6 @@ export class AppController {
   getClient(@Res() res: Response) {
 		/*const stream = createReadStream(resolve('./client/index.html'))
 			res.type('text/html').send(stream)*/
-		res.send("Hi")
+		res.sendFile("./client/index.html")
 	}
 }
