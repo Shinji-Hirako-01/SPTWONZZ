@@ -7,6 +7,6 @@ export class AppController {
 
   @Get('*')
   getClient(@Res() res: Response) {
-		res.sendFile('')
+		res.sendFile('index.html', { root: '../client/dist/client' })
 	}
 }
